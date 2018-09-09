@@ -28,8 +28,6 @@ export class AccountPage {
   public myLogin = 'jdoe';
   /** **/
 
-  testItem: Observable<Array<any>>;
-
   constructor
   (
     public popoverCtrl: PopoverController,
@@ -37,7 +35,7 @@ export class AccountPage {
     public angFire: AngularFireDatabase,
   ){
     console.clear();
-    this.testItem = this.angFire.list('user/' + this.myLogin).subscribe(snapshots=>{
+    this.angFire.list('user/' + this.myLogin).subscribe(snapshots=>{
       snapshots.forEach(snapshot => {
         this.myAccount[snapshot.$key] = snapshot.$value;
         console.log(snapshot.$key + ':' + snapshot.$value + ' >> ' + this.myAccount[snapshot.$key]);
