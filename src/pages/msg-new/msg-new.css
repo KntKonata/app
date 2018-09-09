@@ -1,0 +1,12 @@
+page-msg-new ion-row.myKeyboard {
+  background: #e6e6e6;
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+page-msg-new ion-input {
+  background: white;
+  border-radius: 10px;
+  padding: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.25); }
+
+/*# sourceMappingURL=msg-new.css.map */

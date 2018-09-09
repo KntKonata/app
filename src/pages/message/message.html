@@ -1,0 +1,53 @@
+<!--
+  Generated template for the MessagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title text-center>
+      <ion-icon name="car"></ion-icon>
+      Taxi Alain
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-item-group>
+
+    <ion-item-divider style="line-height: 25px;" color="primary2">
+      Messages
+      <ion-icon (click)="goToPush('MsgNewPage', 1)" style="font-size: 25px;margin-right:10px;" float-right name="add"></ion-icon>
+    </ion-item-divider>
+
+    <ion-item (click)="goToPush('MsgDetailsPage', 1)">
+      <h2>John DOE</h2>
+      <p>
+        John DOE wants to send you his course
+      </p>
+      <small text-right item-end>08:00<br/>01/01/99</small>
+    </ion-item>
+
+    <ion-item color="light">
+      <h2>John DOE</h2>
+      <p>
+        Hey ! I'm a message !
+      </p>
+      <small text-right item-end>08:00<br/>01/01/99</small>
+    </ion-item>
+    <ion-item color="light">
+      <h2>John DOE</h2>
+      <p>
+        Hey ! I'm a message !
+      </p>
+      <small text-right item-end>08:00<br/>01/01/99</small>
+    </ion-item>
+
+  </ion-item-group>
+
+</ion-content>

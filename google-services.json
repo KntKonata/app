@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "129064210858",
+    "firebase_url": "https://taxialain-e16f4.firebaseio.com",
+    "project_id": "taxialain-e16f4",
+    "storage_bucket": "taxialain-e16f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129064210858:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129064210858-7r2pmb2dsa4n99kvqo33aa3g0k998guc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtx_UnBPdqeiUvfIhwjnD_6c7WLITdMo0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

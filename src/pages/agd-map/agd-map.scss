@@ -1,0 +1,16 @@
+page-agd-map {
+  .md-dayview-cat {
+    display: inline-block;
+    vertical-align: middle;
+    width: 6px;
+    height: 6px;
+    margin: 0 4px 0 0;
+    border-radius: 6px;
+    background: #aaa;
+  }
+
+  #map_canvas2 {
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -1,0 +1,63 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>
+      Course #{{courseId}}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div id="map_canvas">
+    <ion-icon (click)="goToPush(courseId);" name="open" color="primary" class="myIcon"></ion-icon>
+  </div>
+  <ion-item-group>
+
+    <ion-item-divider color="light">Informations</ion-item-divider>
+    <ion-item><ion-icon name="person" margin-right></ion-icon>M John DOE</ion-item>
+    <ion-item><ion-icon name="call" margin-right></ion-icon>06.12.34.56.78</ion-item>
+    <ion-item><ion-icon name="car" margin-right></ion-icon>11 Place du Forum - Metz</ion-item>
+    <ion-item><ion-icon name="flag" margin-right></ion-icon>3 Rue du Mouzon - Laxou</ion-item>
+    <ion-item><ion-icon name="time" margin-right></ion-icon>08:00 - 08:30</ion-item>
+
+    <ion-item-divider color="light">Actions</ion-item-divider>
+    <ion-item>
+      <ion-row>
+
+        <ion-col text-center>
+          <button ion-button icon-only>
+            <ion-icon name="call"></ion-icon>
+          </button>
+        </ion-col>
+
+        <ion-col text-center>
+          <button ion-button icon-only>
+            <ion-icon name="share-alt"></ion-icon>
+          </button>
+        </ion-col>
+
+        <ion-col text-center>
+          <button ion-button icon-only>
+            <ion-icon name="camera"></ion-icon>
+          </button>
+        </ion-col>
+
+        <ion-col text-center>
+          <button color="info" ion-button icon-only>
+            <ion-icon name="alert"></ion-icon>
+          </button>
+        </ion-col>
+
+        <ion-col text-center>
+          <button color="danger" ion-button icon-only>
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-col>
+
+      </ion-row>
+    </ion-item>
+
+  </ion-item-group>
+</ion-content>

@@ -1,0 +1,103 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title text-center>
+      <ion-icon name="car"></ion-icon>
+      Taxi Alain
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+<!--
+  <ion-item-group>
+
+    <ion-item-divider style="line-height: 25px;" color="primary2">
+      Aujourd'hui - {{date}}
+      <ion-icon style="font-size: 25px;margin-right:10px;" float-right name="settings"></ion-icon>
+    </ion-item-divider>
+
+    <ion-item color="light">
+      <h2>07:00</h2>
+      <p>
+        <ion-icon name="car"></ion-icon>
+        1 rue de Paris, Metz
+      </p>
+    </ion-item>
+
+    <ion-item (click)="goToPush('000000')" class="doing">
+      <h1>
+        08:00
+        <small><i>#000000</i></small>
+      </h1>
+      <h2>
+        <ion-icon name="car"></ion-icon>
+        11 Place du Forum - Metz
+      </h2>
+      <h2>
+        <ion-icon name="flag"></ion-icon>
+        3 Rue du Mouzon - Laxou
+      </h2>
+    </ion-item>
+
+    <ion-item color="light">
+      <h2>09:00</h2>
+      <p>
+        <ion-icon name="car"></ion-icon>
+        1 rue de Paris, Metz
+      </p>
+    </ion-item>
+
+    <ion-item color="light">
+      <h2>10:00</h2>
+      <p>
+        <ion-icon name="car"></ion-icon>
+        1 rue de Paris, Metz
+      </p>
+    </ion-item>
+
+    <ion-item color="light">
+      <h2>11:00</h2>
+      <p>
+        <ion-icon name="car"></ion-icon>
+        1 rue de Paris, Metz
+      </p>
+    </ion-item>
+
+    <ion-item color="light">
+      <h2>12:00</h2>
+      <p>
+        <ion-icon name="car"></ion-icon>
+        1 rue de Paris, Metz
+      </p>
+    </ion-item>
+
+  </ion-item-group>
+-->
+
+  <ion-row>
+    <ion-col col-9>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="newItem" placeholder="New Shopping item"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <button ion-button (click)="addItem()">Add!</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of shoppingItems | async">
+      <ion-item>
+        {{ item.$value }}
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" icon-only (click)="removeItem(item.$key)"><ion-icon name="trash"></ion-icon></button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

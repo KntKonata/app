@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEE,+BAAmB;EACjB,UAAU,EAAE,OAAO;EACnB,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,CAAC;EACT,KAAK,EAAE,IAAI;AAGb,sBAAU;EACR,UAAU,EAAE,KAAK;EACjB,aAAa,EAAE,IAAI;EACnB,OAAO,EAAE,YAAY;EACrB,MAAM,EAAE,6BAAyB",
+"sources": ["msg-new.scss"],
+"names": [],
+"file": "msg-new.css"
+}

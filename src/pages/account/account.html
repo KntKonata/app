@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title text-center>
+      <ion-icon name="car"></ion-icon>
+      Taxi Alain
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-item-group>
+
+    <ion-item-divider style="line-height: 25px;" color="primary2">
+      Compte
+      <ion-icon (click)="presentPopover();" style="font-size: 25px;margin-right:10px;" float-right name="checkmark-circle"></ion-icon>
+    </ion-item-divider>
+    <ion-list>
+        <ion-item>
+            <small>Nom</small>
+            <p>{{myAccount[4]}}</p>
+        </ion-item>
+        <ion-item>
+            <small>Voiture</small>
+            <p>{{myAccount[0]}}</p>
+        </ion-item>
+        <ion-item>
+            <small>Immatriculation</small>
+            <p>{{myAccount[2]}}</p>
+        </ion-item>
+        <ion-item>
+            <small>Disponibilité</small>
+            <p>{{myAccount[1]}}</p>
+        </ion-item>
+
+      <ion-item><small>Position</small><p>{{test}}</p><p>{{myLat}}, {{myLng}}</p></ion-item>
+
+    </ion-list>
+
+
+  </ion-item-group>
+
+</ion-content>

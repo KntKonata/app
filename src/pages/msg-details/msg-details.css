@@ -1,0 +1,35 @@
+page-msg-details h2 {
+  color: #488aff; }
+page-msg-details ion-item {
+  margin-bottom: 0 !important; }
+page-msg-details small {
+  opacity: .25;
+  display: block; }
+page-msg-details h2 + p {
+  background: #488aff;
+  color: white !important; }
+page-msg-details p {
+  background: #e6e6e6;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block; }
+page-msg-details span.mySpan {
+  color: #b2b2b2; }
+page-msg-details button.request {
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  font-size: 30px !important;
+  border-radius: 10px !important; }
+page-msg-details ion-row.myKeyboard {
+  background: #e6e6e6;
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+page-msg-details ion-input {
+  background: white;
+  border-radius: 10px;
+  padding: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.25); }
+
+/*# sourceMappingURL=msg-details.css.map */

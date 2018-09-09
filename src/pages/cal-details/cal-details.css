@@ -1,0 +1,23 @@
+.md-dayview-cat {
+  display: inline-block;
+  vertical-align: middle;
+  width: 6px;
+  height: 6px;
+  margin: 0 4px 0 0;
+  border-radius: 6px;
+  background: #aaa; }
+
+#map_canvas {
+  position: relative;
+  background: url("https://i.imgur.com/xGvv2DP.png") center center;
+  background-size: 150%;
+  height: 100px;
+  width: 100%; }
+
+.myIcon {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 40px; }
+
+/*# sourceMappingURL=cal-details.css.map */
