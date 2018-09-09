@@ -84,10 +84,12 @@ webpackEmptyAsyncContext.id = 162;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_geocoder__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__act_details_act_details__ = __webpack_require__(325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_google_maps__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_geocoder__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -99,8 +101,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-//import { ActDetailsPage } from "../act-details/act-details";
-//import {GoogleMaps, MyLocation} from "@ionic-native/google-maps";
+
+
 
 
 
@@ -112,18 +114,52 @@ var AccountPage = /** @class */ (function () {
         this.angFire = angFire;
         /** **/
         this.myAccount = [];
-        this.testItem = this.angFire.list('user/mfoureur').subscribe(function (snapshots) {
-            console.log('test1');
+        this.myLogin = 'jdoe';
+        console.clear();
+        this.testItem = this.angFire.list('user/' + this.myLogin).subscribe(function (snapshots) {
             snapshots.forEach(function (snapshot) {
-                _this.myAccount.push(snapshot.$value);
+                _this.myAccount[snapshot.$key] = snapshot.$value;
+                console.log(snapshot.$key + ':' + snapshot.$value + ' >> ' + _this.myAccount[snapshot.$key]);
+                console.log(_this.myAccount);
             });
         });
     }
+    AccountPage.prototype.ionViewDidLoad = function () {
+        this.findLocation();
+    };
+    AccountPage.prototype.findLocation = function () {
+        var _this = this;
+        this.map = __WEBPACK_IMPORTED_MODULE_3__ionic_native_google_maps__["a" /* GoogleMaps */].create('test');
+        // Get the location of you
+        this.map.getMyLocation()
+            .then(function (location) {
+            console.log(JSON.stringify(location, null, 2));
+            _this.myLat = location.latLng.lat;
+            _this.myLng = location.latLng.lng;
+            _this.reverseGeocode(location.latLng.lat, location.latLng.lng);
+        });
+    };
+    AccountPage.prototype.reverseGeocode = function (lat, lng) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this._GEOCODE.reverseGeocode(lat, lng)
+                .then(function (result) {
+                _this.test = result[0].subThoroughfare + " " + result[0].thoroughfare + " - " + result[0].locality;
+            })
+                .catch(function (error) {
+                reject(error);
+            });
+        });
+    };
+    AccountPage.prototype.presentPopover = function () {
+        var popover = this.popoverCtrl.create(__WEBPACK_IMPORTED_MODULE_2__act_details_act_details__["a" /* ActDetailsPage */], { 'myLogin': this.myLogin });
+        popover.present();
+    };
     AccountPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-account',template:/*ion-inline-start:"/home/konata/zadsm/src/pages/account/account.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title text-center>\n      <ion-icon name="car"></ion-icon>\n      Taxi Alain\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <ion-item-group>\n\n    <ion-item-divider style="line-height: 25px;" color="primary2">\n      Compte\n      <ion-icon (click)="presentPopover();" style="font-size: 25px;margin-right:10px;" float-right name="checkmark-circle"></ion-icon>\n    </ion-item-divider>\n    <ion-list>\n        <ion-item>\n            <small>Nom</small>\n            <p>{{myAccount[4]}}</p>\n        </ion-item>\n        <ion-item>\n            <small>Voiture</small>\n            <p>{{myAccount[0]}}</p>\n        </ion-item>\n        <ion-item>\n            <small>Immatriculation</small>\n            <p>{{myAccount[2]}}</p>\n        </ion-item>\n        <ion-item>\n            <small>Disponibilité</small>\n            <p>{{myAccount[1]}}</p>\n        </ion-item>\n\n      <ion-item><small>Position</small><p>{{test}}</p><p>{{myLat}}, {{myLng}}</p></ion-item>\n\n    </ion-list>\n\n\n  </ion-item-group>\n\n</ion-content>\n'/*ion-inline-end:"/home/konata/zadsm/src/pages/account/account.html"*/,
+            selector: 'page-account',template:/*ion-inline-start:"/home/konata/zadsm/src/pages/account/account.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n    <ion-title text-center>\n      <ion-icon name="car"></ion-icon>\n      Taxi Alain\n    </ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <ion-item-group>\n\n    <ion-item-divider style="line-height: 25px;" color="primary2">\n      Compte - {{myLogin}}\n      <ion-icon (click)="presentPopover();" style="font-size: 25px;margin-right:10px;" float-right name="checkmark-circle"></ion-icon>\n    </ion-item-divider>\n    <ion-list>\n        <ion-item>\n            <small>Nom</small>\n            <p>{{myAccount[\'name\']}}</p>\n        </ion-item>\n        <ion-item>\n            <small>Voiture</small>\n            <p>{{myAccount[\'car\']}}</p>\n        </ion-item>\n        <ion-item>\n            <small>Immatriculation</small>\n            <p>{{myAccount[\'imm\']}}</p>\n        </ion-item>\n        <ion-item>\n            <small>Disponibilité</small>\n            <p>{{myAccount[\'dispo\']}}</p>\n        </ion-item>\n\n      <ion-item><small>Position</small><p>{{test}}</p><p>{{myLat}}, {{myLng}}</p></ion-item>\n\n    </ion-list>\n\n\n  </ion-item-group>\n\n</ion-content>\n'/*ion-inline-end:"/home/konata/zadsm/src/pages/account/account.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* PopoverController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* PopoverController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_geocoder__["a" /* NativeGeocoder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_native_geocoder__["a" /* NativeGeocoder */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* PopoverController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* PopoverController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_geocoder__["a" /* NativeGeocoder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_native_geocoder__["a" /* NativeGeocoder */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _c || Object])
     ], AccountPage);
     return AccountPage;
     var _a, _b, _c;
@@ -808,6 +844,7 @@ var HomePage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActDetailsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(112);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -819,21 +856,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ActDetailsPage = /** @class */ (function () {
-    function ActDetailsPage(navCtrl, navParams) {
+    function ActDetailsPage(navCtrl, navParams, angFire) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.angFire = angFire;
+        this.myLogin = this.navParams.get('myLogin');
     }
     ActDetailsPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ActDetailsPage');
     };
+    ActDetailsPage.prototype.changeDispo = function (newDispo) {
+        var ref = this.angFire.app.database().ref();
+        var usersRef = ref.child("user");
+        var hopperRef = usersRef.child(this.myLogin);
+        hopperRef.update({ "dispo": newDispo });
+    };
     ActDetailsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-act-details',template:/*ion-inline-start:"/home/konata/zadsm/src/pages/act-details/act-details.html"*/'<ion-content>\n  <ion-item-divider style="line-height: 25px;" color="primary2">\n    Disponibilité\n  </ion-item-divider>\n  <ion-item (click)="changeDispo(\'Disponible\');" color="light">Disponible</ion-item>\n  <ion-item (click)="changeDispo(\'En Course\');">En Course</ion-item>\n  <ion-item (click)="changeDispo(\'Indisponible\');">Indisponible</ion-item>\n</ion-content>\n'/*ion-inline-end:"/home/konata/zadsm/src/pages/act-details/act-details.html"*/,
+            selector: 'page-act-details',template:/*ion-inline-start:"/home/konata/zadsm/src/pages/act-details/act-details.html"*/'<ion-content>\n  <ion-item-divider style="line-height: 25px;" color="primary2">\n    Disponibilité\n  </ion-item-divider>\n  <ion-item (click)="changeDispo(\'Disponible\');">Disponible</ion-item>\n  <ion-item (click)="changeDispo(\'En Course\');">En Course</ion-item>\n  <ion-item (click)="changeDispo(\'Indisponible\');">Indisponible</ion-item>\n</ion-content>\n'/*ion-inline-end:"/home/konata/zadsm/src/pages/act-details/act-details.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _c || Object])
     ], ActDetailsPage);
     return ActDetailsPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=act-details.js.map

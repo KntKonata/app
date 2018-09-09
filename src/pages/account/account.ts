@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PopoverController } from 'ionic-angular';
-//import { ActDetailsPage } from "../act-details/act-details";
-//import {GoogleMaps, MyLocation} from "@ionic-native/google-maps";
+import { ActDetailsPage } from "../act-details/act-details";
+import {GoogleMaps, MyLocation} from "@ionic-native/google-maps";
 import {NativeGeocoder, NativeGeocoderReverseResult} from "@ionic-native/native-geocoder";
 
 import { FirebaseProvider } from "../../providers/firebase/firebase";
@@ -25,9 +25,10 @@ export class AccountPage {
   public myLng;
   /** **/
   public myAccount = [];
+  public myLogin = 'jdoe';
   /** **/
 
-  testItem: Observable<any>;
+  testItem: Observable<Array<any>>;
 
   constructor
   (
@@ -35,15 +36,16 @@ export class AccountPage {
     private _GEOCODE  : NativeGeocoder,
     public angFire: AngularFireDatabase,
   ){
-    this.testItem = this.angFire.list('user/mfoureur').subscribe(snapshots=>{
-      console.log('test1');
+    console.clear();
+    this.testItem = this.angFire.list('user/' + this.myLogin).subscribe(snapshots=>{
       snapshots.forEach(snapshot => {
-        this.myAccount.push(snapshot.$value);
+        this.myAccount[snapshot.$key] = snapshot.$value;
+        console.log(snapshot.$key + ':' + snapshot.$value + ' >> ' + this.myAccount[snapshot.$key]);
+        console.log(this.myAccount);
       });
     });
   }
 
-  /*
     ionViewDidLoad() {
       this.findLocation();
     }
@@ -79,8 +81,7 @@ export class AccountPage {
     }
 
     presentPopover() {
-      const popover = this.popoverCtrl.create(ActDetailsPage);
+      const popover = this.popoverCtrl.create(ActDetailsPage, {'myLogin': this.myLogin});
       popover.present();
     }
-  */
 }

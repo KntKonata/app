@@ -15,25 +15,25 @@
   <ion-item-group>
 
     <ion-item-divider style="line-height: 25px;" color="primary2">
-      Compte
+      Compte - {{myLogin}}
       <ion-icon (click)="presentPopover();" style="font-size: 25px;margin-right:10px;" float-right name="checkmark-circle"></ion-icon>
     </ion-item-divider>
     <ion-list>
         <ion-item>
             <small>Nom</small>
-            <p>{{myAccount[4]}}</p>
+            <p>{{myAccount['name']}}</p>
         </ion-item>
         <ion-item>
             <small>Voiture</small>
-            <p>{{myAccount[0]}}</p>
+            <p>{{myAccount['car']}}</p>
         </ion-item>
         <ion-item>
             <small>Immatriculation</small>
-            <p>{{myAccount[2]}}</p>
+            <p>{{myAccount['imm']}}</p>
         </ion-item>
         <ion-item>
             <small>Disponibilité</small>
-            <p>{{myAccount[1]}}</p>
+            <p>{{myAccount['dispo']}}</p>
         </ion-item>
 
       <ion-item><small>Position</small><p>{{test}}</p><p>{{myLat}}, {{myLng}}</p></ion-item>
